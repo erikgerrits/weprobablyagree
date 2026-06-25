@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
-import { Fredoka, Nunito } from "next/font/google";
+import { Schibsted_Grotesk, Figtree } from "next/font/google";
 import "./globals.css";
 
-const fredoka = Fredoka({
+const schibsted = Schibsted_Grotesk({
   subsets: ["latin"],
-  variable: "--font-fredoka",
+  variable: "--font-schibsted",
   display: "swap",
 });
 
-const nunito = Nunito({
+const figtree = Figtree({
   subsets: ["latin"],
-  variable: "--font-nunito",
+  variable: "--font-figtree",
   display: "swap",
 });
 
@@ -26,7 +26,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${fredoka.variable} ${nunito.variable}`}>
+    <html lang="en" className={`${schibsted.variable} ${figtree.variable}`}>
       <body>{children}</body>
     </html>
   );

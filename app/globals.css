@@ -1,23 +1,26 @@
 @import "tailwindcss";
 
 /* ------------------------------------------------------------------ *
-   We Probably Agree — soft & human.
-   Bright cream canvas, friendly rounded type (Fredoka + Nunito),
-   gentle pastel cards, soft shadows, blurred colour blobs. Warm,
-   approachable, light — common ground that feels welcoming.
+   We Probably Agree — warm modern (the in-between).
+   Warm bone canvas, confident type (Schibsted Grotesk + Figtree), an
+   ember accent (the midpoint between coral and lime), structured
+   bordered cards, and one bold near-black moment in the closing.
  * ------------------------------------------------------------------ */
 
 @theme {
-  --color-cream: #fbf7f1;
-  --color-cream-deep: #f4ede2;
-  --color-ink: #36312a;
-  --color-ink-soft: #71695d;
-  --color-ink-faint: #a99f90;
-  --color-coral: #ef7d5f;
-  --color-coral-deep: #d9613d;
+  --color-bone: #f5f1e8;
+  --color-surface: #fcf9f2;
+  --color-border: #e7dfcf;
+  --color-ink: #26221b;
+  --color-ink-soft: #6b6457;
+  --color-ink-faint: #a99f8c;
+  --color-ember: #d4621c;
+  --color-ember-deep: #b5500f;
+  --color-ember-light: #f0894a;
+  --color-night: #221e18;
 
-  --font-display: var(--font-fredoka);
-  --font-body: var(--font-nunito);
+  --font-display: var(--font-schibsted);
+  --font-body: var(--font-figtree);
 }
 
 :root {
@@ -25,69 +28,29 @@
 }
 
 body {
-  background-color: var(--color-cream);
+  background-color: var(--color-bone);
   color: var(--color-ink);
   font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   background-image:
-    radial-gradient(40rem 40rem at 8% -6%, rgba(246, 196, 170, 0.38), transparent 70%),
-    radial-gradient(36rem 36rem at 96% 0%, rgba(184, 214, 235, 0.34), transparent 70%),
-    radial-gradient(46rem 46rem at 88% 96%, rgba(199, 227, 208, 0.34), transparent 70%),
-    radial-gradient(34rem 34rem at 4% 88%, rgba(221, 205, 236, 0.30), transparent 70%);
+    radial-gradient(52rem 32rem at 50% -10%, rgba(212, 98, 28, 0.08), transparent 60%),
+    radial-gradient(40rem 40rem at 100% 102%, rgba(212, 98, 28, 0.05), transparent 60%);
   background-attachment: fixed;
   background-repeat: no-repeat;
 }
 
 ::selection {
-  background: var(--color-coral);
+  background: var(--color-ember);
   color: #fff;
-}
-
-/* Soft pastel blobs for hero atmosphere -------------------------------- */
-.blob {
-  position: absolute;
-  border-radius: 9999px;
-  filter: blur(44px);
-  opacity: 0.55;
-  pointer-events: none;
-  z-index: 0;
-  animation: float 13s ease-in-out infinite;
-}
-
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0) scale(1);
-  }
-  50% {
-    transform: translateY(-22px) scale(1.04);
-  }
-}
-
-/* Soft card ------------------------------------------------------------ */
-.card {
-  border-radius: 28px;
-  box-shadow:
-    0 1px 2px rgba(54, 49, 42, 0.04),
-    0 14px 34px -16px rgba(54, 49, 42, 0.2);
-  transition:
-    transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1),
-    box-shadow 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
-}
-.card-hover:hover {
-  transform: translateY(-6px);
-  box-shadow:
-    0 2px 4px rgba(54, 49, 42, 0.05),
-    0 26px 56px -18px rgba(54, 49, 42, 0.3);
 }
 
 /* Scroll reveal -------------------------------------------------------- */
 .reveal {
   opacity: 0;
-  transform: translateY(24px) scale(0.985);
+  transform: translateY(22px);
   transition:
-    opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1),
-    transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+    opacity 0.75s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.75s cubic-bezier(0.2, 0.7, 0.2, 1);
   will-change: opacity, transform;
 }
 .reveal.is-visible {
@@ -108,20 +71,14 @@ body {
 }
 .rise {
   opacity: 0;
-  animation: riseIn 0.95s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation: riseIn 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .blob {
-    animation: none;
-  }
   .reveal {
     opacity: 1;
     transform: none;
     transition: none;
-  }
-  .card-hover:hover {
-    transform: none;
   }
   .rise {
     opacity: 1;
