@@ -1,129 +1,159 @@
 import Reveal from "@/components/Reveal";
 import { statements } from "@/lib/statements";
 
+/** Gentle pastel themes, rotated across the statement cards. */
+const palettes = [
+  { card: "#FCE9E0", badge: "#F7CDBA", ink: "#BC5C36" }, // peach
+  { card: "#E4F1EA", badge: "#BFE2CD", ink: "#3E8E6B" }, // mint
+  { card: "#E7EFF8", badge: "#C4DBEE", ink: "#3F7CB0" }, // sky
+  { card: "#FAF0D2", badge: "#F0DE9C", ink: "#A9842B" }, // butter
+  { card: "#EFEAF7", badge: "#D6CAEC", ink: "#7E64B0" }, // lilac
+  { card: "#FBE5E9", badge: "#F3C1CB", ink: "#C2566F" }, // rose
+];
+
 export default function Home() {
   const total = statements.length;
 
   return (
-    <main className="relative mx-auto w-full max-w-5xl px-6 sm:px-10">
-      {/* Masthead --------------------------------------------------- */}
-      <header className="rise flex items-center justify-between border-b border-line py-5 font-mono text-[0.68rem] uppercase tracking-[0.28em] text-ink-soft">
-        <span className="text-clay">We Probably Agree</span>
-        <span className="hidden sm:inline">A charter of common ground</span>
-        <span>Ed. 2026</span>
-      </header>
-
+    <main className="relative mx-auto w-full max-w-6xl px-5 sm:px-8">
       {/* Hero ------------------------------------------------------- */}
-      <section className="pt-20 pb-16 sm:pt-28 sm:pb-24">
-        <p
-          className="rise font-mono text-xs uppercase tracking-[0.32em] text-ink-soft"
-          style={{ animationDelay: "0.05s" }}
-        >
-          Common ground, first
-        </p>
-
-        <h1
-          className="rise mt-7 text-[clamp(3.2rem,13vw,9.5rem)] font-light leading-[0.92] tracking-[-0.03em]"
-          style={{ animationDelay: "0.12s" }}
-        >
-          We probably
-          <br />
-          <span className="italic text-clay">agree.</span>
-        </h1>
-
-        <p
-          className="rise mt-10 max-w-2xl text-[clamp(1.15rem,2.4vw,1.55rem)] leading-relaxed text-ink-soft"
-          style={{ animationDelay: "0.22s" }}
-        >
-          The headlines sell us the ten percent where we clash. But beneath the
-          noise, most of us already share the things that matter most. Before we
-          argue about <span className="italic text-ink">how</span>, let&apos;s
-          name <span className="italic text-ink">what</span> we share — and
-          start there.
-        </p>
-
+      <section className="relative overflow-hidden pt-16 pb-14 sm:pt-24 sm:pb-20">
+        <div className="blob h-64 w-64 bg-[#f7b79c]" style={{ top: "-2rem", left: "-3rem" }} />
         <div
-          className="rise mt-12 flex items-center gap-4 font-mono text-[0.7rem] uppercase tracking-[0.28em] text-ink-faint"
-          style={{ animationDelay: "0.32s" }}
-        >
-          <span className="h-px w-12 bg-clay" />
-          {total} statements
+          className="blob h-72 w-72 bg-[#bcd9ec]"
+          style={{ top: "1rem", right: "-4rem", animationDelay: "2s" }}
+        />
+        <div
+          className="blob h-56 w-56 bg-[#c8e3d1]"
+          style={{ bottom: "-3rem", left: "30%", animationDelay: "4s" }}
+        />
+
+        <div className="relative z-10">
+          <span
+            className="rise inline-flex items-center gap-2 rounded-full bg-white/70 px-4 py-1.5 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink-soft shadow-sm ring-1 ring-black/5 backdrop-blur"
+            style={{ animationDelay: "0.05s" }}
+          >
+            <span className="h-2 w-2 rounded-full bg-coral" />
+            Common ground, first
+          </span>
+
+          <h1
+            className="rise mt-7 max-w-4xl font-display text-[clamp(2.9rem,11vw,7.5rem)] font-semibold leading-[0.95] tracking-[-0.01em]"
+            style={{ animationDelay: "0.12s" }}
+          >
+            we probably <span className="text-coral">agree</span>
+          </h1>
+
+          <p
+            className="rise mt-8 max-w-2xl font-body text-[clamp(1.1rem,2.2vw,1.45rem)] leading-relaxed text-ink-soft"
+            style={{ animationDelay: "0.22s" }}
+          >
+            The headlines sell us the ten percent where we clash. But underneath
+            the noise, most of us already share the things that matter most.
+            Before we argue about <span className="font-semibold text-ink">how</span>,
+            let&apos;s name <span className="font-semibold text-ink">what</span>{" "}
+            we share — and start there.
+          </p>
+
+          <div
+            className="rise mt-9 inline-flex items-center gap-2 rounded-full bg-coral/10 px-4 py-2 font-body text-sm font-bold text-coral-deep"
+            style={{ animationDelay: "0.32s" }}
+          >
+            ✦ {total} things we share
+          </div>
         </div>
       </section>
 
-      {/* Articles --------------------------------------------------- */}
-      <section aria-label="Statements of common ground">
-        <ol>
-          {statements.map((s, i) => (
-            <li key={s.n} className="group relative border-t border-line">
-              {/* Clay tick that grows on hover over the hairline */}
-              <span className="absolute left-0 top-0 h-px w-0 bg-clay transition-all duration-500 ease-out group-hover:w-16" />
-
-              <Reveal
-                delay={(i % 4) * 70}
-                className="grid grid-cols-1 gap-x-10 gap-y-3 py-10 sm:grid-cols-[5.5rem_1fr] sm:py-14"
-              >
-                <div className="flex items-baseline gap-3 sm:flex-col sm:gap-1">
-                  <span className="font-mono text-2xl text-clay transition-transform duration-500 ease-out group-hover:-translate-y-0.5 sm:text-3xl">
-                    {s.n}
-                  </span>
-                  <span className="font-mono text-[0.62rem] uppercase tracking-[0.28em] text-ink-faint">
-                    / {total}
-                  </span>
-                </div>
-
-                <div className="relative">
-                  <span
-                    aria-hidden="true"
-                    className="pointer-events-none absolute -top-6 right-0 select-none font-display text-[7rem] font-light leading-none text-clay/[0.06] transition-colors duration-500 group-hover:text-clay/[0.1] sm:-top-10 sm:text-[9rem]"
+      {/* Cards ------------------------------------------------------ */}
+      <section aria-label="Statements of common ground" className="pb-6">
+        <ol className="grid grid-cols-1 gap-5 sm:gap-6 md:grid-cols-2">
+          {statements.map((s, i) => {
+            const p = palettes[i % palettes.length];
+            return (
+              <li key={s.n}>
+                <Reveal delay={(i % 2) * 90}>
+                  <article
+                    className="card card-hover flex h-full flex-col p-7 sm:p-9"
+                    style={{ backgroundColor: p.card }}
                   >
-                    {s.n}
-                  </span>
-                  <h2 className="relative max-w-2xl text-[clamp(1.65rem,4.2vw,2.65rem)] font-light leading-[1.12] tracking-[-0.015em]">
-                    {s.title}
-                  </h2>
-                  <p className="relative mt-4 max-w-xl text-base leading-relaxed text-ink-soft sm:text-lg">
-                    {s.note}
-                  </p>
-                  {s.source ? (
-                    <p className="relative mt-4 flex items-center gap-2 font-mono text-[0.62rem] uppercase tracking-[0.24em] text-ink-faint">
-                      <span className="h-px w-5 bg-clay/60" />
-                      {s.source}
+                    <div className="flex items-center gap-3">
+                      <span
+                        className="inline-flex h-11 w-11 items-center justify-center rounded-2xl font-display text-lg font-semibold"
+                        style={{ backgroundColor: p.badge, color: p.ink }}
+                      >
+                        {s.n}
+                      </span>
+                      <span
+                        className="font-body text-[0.7rem] font-bold uppercase tracking-[0.16em]"
+                        style={{ color: p.ink }}
+                      >
+                        a thing we share
+                      </span>
+                    </div>
+
+                    <h2 className="mt-6 font-display text-[clamp(1.45rem,2.6vw,1.9rem)] font-semibold leading-[1.18] text-ink">
+                      {s.title}
+                    </h2>
+
+                    <p className="mt-3 font-body text-[1.02rem] leading-relaxed text-ink-soft">
+                      {s.note}
                     </p>
-                  ) : null}
-                </div>
-              </Reveal>
-            </li>
-          ))}
+
+                    {s.source ? (
+                      <p
+                        className="mt-5 inline-flex w-fit items-center gap-2 rounded-full bg-white/55 px-3 py-1.5 font-body text-[0.72rem] font-semibold"
+                        style={{ color: p.ink }}
+                      >
+                        <span
+                          className="h-1.5 w-1.5 rounded-full"
+                          style={{ backgroundColor: p.ink }}
+                        />
+                        {s.source}
+                      </p>
+                    ) : null}
+                  </article>
+                </Reveal>
+              </li>
+            );
+          })}
         </ol>
-        <div className="border-t border-line" />
       </section>
 
       {/* Closing ---------------------------------------------------- */}
-      <section className="py-24 sm:py-32">
-        <Reveal className="max-w-3xl">
-          <div className="flex items-center gap-4 font-mono text-[0.7rem] uppercase tracking-[0.28em] text-ink-faint">
-            <span className="h-px w-12 bg-clay" />
-            Where this goes
+      <section className="py-14 sm:py-20">
+        <Reveal>
+          <div className="card relative overflow-hidden bg-white/70 p-9 backdrop-blur sm:p-14">
+            <div
+              className="blob h-48 w-48 bg-[#f2d6a0]"
+              style={{ top: "-2rem", right: "10%" }}
+            />
+            <div className="relative z-10 max-w-3xl">
+              <span className="inline-flex items-center gap-2 rounded-full bg-coral/10 px-4 py-1.5 font-body text-xs font-bold uppercase tracking-[0.16em] text-coral-deep">
+                Where this goes
+              </span>
+              <h2 className="mt-6 font-display text-[clamp(1.9rem,5vw,3.1rem)] font-semibold leading-[1.1] text-ink">
+                this is where we start —{" "}
+                <span className="text-coral">not where we stop.</span>
+              </h2>
+              <p className="mt-6 font-body text-lg leading-relaxed text-ink-soft sm:text-xl">
+                Agreeing on what matters is the easy part. The hard part is
+                deciding what to{" "}
+                <span className="font-semibold text-ink">do</span> about it — and
+                that&apos;s the argument worth having. It&apos;s a better argument
+                when it starts from common ground instead of contempt. These are
+                the floor. The decisions come next.
+              </p>
+            </div>
           </div>
-          <h2 className="mt-8 text-[clamp(2rem,6vw,3.5rem)] font-light leading-[1.08] tracking-[-0.02em]">
-            This is where we start —{" "}
-            <span className="italic text-clay">not where we stop.</span>
-          </h2>
-          <p className="mt-8 text-lg leading-relaxed text-ink-soft sm:text-xl">
-            Agreeing on what matters is the easy part. The hard part is deciding
-            what to <span className="italic text-ink">do</span> about it — and
-            that&apos;s the argument worth having. It&apos;s a better argument
-            when it begins from common ground instead of contempt. These
-            statements are the floor. The decisions come next.
-          </p>
         </Reveal>
       </section>
 
       {/* Footer ----------------------------------------------------- */}
-      <footer className="flex flex-col items-start justify-between gap-4 border-t border-line py-8 font-mono text-[0.66rem] uppercase tracking-[0.26em] text-ink-faint sm:flex-row sm:items-center">
-        <span className="text-ink-soft">We Probably Agree</span>
-        <span>A starting point · 2026</span>
+      <footer className="flex flex-col items-start justify-between gap-3 border-t border-black/5 py-8 font-body text-sm text-ink-faint sm:flex-row sm:items-center">
+        <span className="font-display text-base font-semibold text-ink-soft">
+          we probably agree
+        </span>
+        <span>a starting point · 2026</span>
       </footer>
     </main>
   );

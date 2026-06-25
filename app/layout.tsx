@@ -1,25 +1,23 @@
 import type { Metadata } from "next";
-import { Fraunces, IBM_Plex_Mono } from "next/font/google";
+import { Fredoka, Nunito } from "next/font/google";
 import "./globals.css";
 
-const fraunces = Fraunces({
+const fredoka = Fredoka({
   subsets: ["latin"],
-  style: ["normal", "italic"],
-  variable: "--font-fraunces",
+  variable: "--font-fredoka",
   display: "swap",
 });
 
-const plexMono = IBM_Plex_Mono({
+const nunito = Nunito({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-plex-mono",
+  variable: "--font-nunito",
   display: "swap",
 });
 
 export const metadata: Metadata = {
   title: "We Probably Agree",
   description:
-    "Before we argue about how, let's name what we share. A charter of common ground — the starting point for the decisions that come next.",
+    "Before we argue about how, let's name what we share. The things most of us already agree on — the starting point for the decisions that come next.",
 };
 
 export default function RootLayout({
@@ -28,11 +26,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${fraunces.variable} ${plexMono.variable}`}>
-      <body>
-        <div className="grain" aria-hidden="true" />
-        {children}
-      </body>
+    <html lang="en" className={`${fredoka.variable} ${nunito.variable}`}>
+      <body>{children}</body>
     </html>
   );
 }

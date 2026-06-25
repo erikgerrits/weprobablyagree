@@ -1,23 +1,23 @@
 @import "tailwindcss";
 
 /* ------------------------------------------------------------------ *
-   We Probably Agree — a civic charter of common ground.
-   Aesthetic: warm parchment, editorial serif, monospace civic labels,
-   a single earthy clay accent. Print-document calm, not partisan noise.
+   We Probably Agree — soft & human.
+   Bright cream canvas, friendly rounded type (Fredoka + Nunito),
+   gentle pastel cards, soft shadows, blurred colour blobs. Warm,
+   approachable, light — common ground that feels welcoming.
  * ------------------------------------------------------------------ */
 
 @theme {
-  --color-paper: #f3ece0;
-  --color-paper-deep: #ece2d0;
-  --color-ink: #221c14;
-  --color-ink-soft: #6b6253;
-  --color-ink-faint: #a0957f;
-  --color-clay: #b5532c;
-  --color-clay-soft: #d98a5f;
-  --color-line: #dbd0bb;
+  --color-cream: #fbf7f1;
+  --color-cream-deep: #f4ede2;
+  --color-ink: #36312a;
+  --color-ink-soft: #71695d;
+  --color-ink-faint: #a99f90;
+  --color-coral: #ef7d5f;
+  --color-coral-deep: #d9613d;
 
-  --font-display: var(--font-fraunces);
-  --font-mono: var(--font-plex-mono);
+  --font-display: var(--font-fredoka);
+  --font-body: var(--font-nunito);
 }
 
 :root {
@@ -25,41 +25,69 @@
 }
 
 body {
-  background-color: var(--color-paper);
+  background-color: var(--color-cream);
   color: var(--color-ink);
-  font-family: var(--font-display), Georgia, "Times New Roman", serif;
-  font-optical-sizing: auto;
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
   background-image:
-    radial-gradient(120% 130% at 50% -10%, rgba(255, 252, 244, 0.6), transparent 55%),
-    radial-gradient(120% 90% at 50% 110%, rgba(120, 80, 40, 0.07), transparent 60%);
+    radial-gradient(40rem 40rem at 8% -6%, rgba(246, 196, 170, 0.38), transparent 70%),
+    radial-gradient(36rem 36rem at 96% 0%, rgba(184, 214, 235, 0.34), transparent 70%),
+    radial-gradient(46rem 46rem at 88% 96%, rgba(199, 227, 208, 0.34), transparent 70%),
+    radial-gradient(34rem 34rem at 4% 88%, rgba(221, 205, 236, 0.30), transparent 70%);
   background-attachment: fixed;
+  background-repeat: no-repeat;
 }
 
 ::selection {
-  background: var(--color-clay);
-  color: var(--color-paper);
+  background: var(--color-coral);
+  color: #fff;
 }
 
-/* Paper grain overlay -------------------------------------------------- */
-.grain {
-  position: fixed;
-  inset: 0;
-  z-index: 60;
+/* Soft pastel blobs for hero atmosphere -------------------------------- */
+.blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(44px);
+  opacity: 0.55;
   pointer-events: none;
-  opacity: 0.05;
-  mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  z-index: 0;
+  animation: float 13s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-22px) scale(1.04);
+  }
+}
+
+/* Soft card ------------------------------------------------------------ */
+.card {
+  border-radius: 28px;
+  box-shadow:
+    0 1px 2px rgba(54, 49, 42, 0.04),
+    0 14px 34px -16px rgba(54, 49, 42, 0.2);
+  transition:
+    transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.card-hover:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 2px 4px rgba(54, 49, 42, 0.05),
+    0 26px 56px -18px rgba(54, 49, 42, 0.3);
 }
 
 /* Scroll reveal -------------------------------------------------------- */
 .reveal {
   opacity: 0;
-  transform: translateY(22px);
+  transform: translateY(24px) scale(0.985);
   transition:
-    opacity 1s cubic-bezier(0.2, 0.7, 0.2, 1),
-    transform 1s cubic-bezier(0.2, 0.7, 0.2, 1);
+    opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
   will-change: opacity, transform;
 }
 .reveal.is-visible {
@@ -71,7 +99,7 @@ body {
 @keyframes riseIn {
   from {
     opacity: 0;
-    transform: translateY(24px);
+    transform: translateY(22px);
   }
   to {
     opacity: 1;
@@ -80,14 +108,20 @@ body {
 }
 .rise {
   opacity: 0;
-  animation: riseIn 1.05s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation: riseIn 0.95s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .blob {
+    animation: none;
+  }
   .reveal {
     opacity: 1;
     transform: none;
     transition: none;
+  }
+  .card-hover:hover {
+    transform: none;
   }
   .rise {
     opacity: 1;
